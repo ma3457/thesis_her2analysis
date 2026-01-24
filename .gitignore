@@ -1,0 +1,21 @@
+# macOS / R
+.DS_Store
+.Rhistory
+.RData
+.Rproj.user
+
+# outputs + figures + data (do not commit)
+outputs/
+aim2_outputs/
+aim2_concordance_outputs/
+data/
+*.csv
+*.tsv
+*.xlsx
+*.rds
+*.rda
+*.png
+*.pdf
+
+# temp
+tmp/
