@@ -17,7 +17,7 @@ suppressPackageStartupMessages({
   library(ragg)
 })
 
-# ---------------- USER CONFIG (EDIT THESE PATHS) ----------------
+# ---------------- USER CONFIG ----------------
 wolf_all_fp <- "/Users/maya.anand/Desktop/Thesis/AIM 2 HER2 DATA/wolf et al/aim2_outputs/GSE194040_ISPY2_mRNA_BPsubtype/ALL_HER2pos_vs_HER2neg_DE.tsv"
 rob_all_fp  <- "/Users/maya.anand/Desktop/Thesis/AIM 2 HER2 DATA/robinson et al/aim2_outputs/GSE199633_Robinson2025/ALL_HER2pos_vs_HER2neg_DE.tsv"
 bru_all_fp  <- "/Users/maya.anand/Desktop/Thesis/AIM 2 HER2 DATA/brueffer et al/aim2_outputs/GSE81538/ALL_HER2pos_vs_HER2neg_DE.tsv"
