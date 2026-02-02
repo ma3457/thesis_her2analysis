@@ -1,4 +1,4 @@
-# ============== run_Wolf_xCell.R (UPDATED: slide-ready figures) ===================
+# ============== run_Wolf_xCell.R ====================
 suppressPackageStartupMessages({
   library(data.table)
   library(stringr)
