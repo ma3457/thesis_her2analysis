@@ -5,7 +5,7 @@ suppressPackageStartupMessages({
   library(ggplot2)
 })
 
-# ---- locate this script's folder (same logic as Wolf) -------------------------
+# ---- locate this script's folder -------------------------
 script_dir <- local({
   args <- commandArgs(trailingOnly = FALSE)
   f <- sub("^--file=", "", args[grep("^--file=", args)])
@@ -45,7 +45,7 @@ norm_ids <- function(v) {
   toupper(v)
 }
 
-# ---- xCell scores (same detection as Wolf) ------------------------------------
+# ---- xCell scores ------------------------------------
 scores_fp <- list.files(res_dir, pattern = "_xCell_.*\\.txt$", full.names = TRUE)
 scores_fp <- scores_fp[!grepl("RAW|pvals", scores_fp, ignore.case = TRUE)]
 if (!length(scores_fp)) stop("No xCell score file found in xcell_results.")
@@ -153,7 +153,7 @@ p_box <- ggplot(long_dt, aes(x = HER2, y = score, fill = HER2)) +
 ggsave(file.path(outdir, "Brueffer_xCell_admixture_boxplots_by_HER2.pdf"),
        p_box, width = 8, height = 5)
 
-# ---- optional scatter Immune vs Stroma ----------------------------------------
+# ---- scatter Immune vs Stroma ----------------------------------------
 if (all(c("ImmuneScore","StromaScore") %in% colnames(admix_dt))) {
   p_scatter <- ggplot(admix_dt, aes(x = StromaScore, y = ImmuneScore, color = HER2)) +
     geom_point(alpha = 0.6, size = 1.8) +
@@ -168,7 +168,7 @@ if (all(c("ImmuneScore","StromaScore") %in% colnames(admix_dt))) {
          p_scatter, width = 5.5, height = 4.5)
 }
 
-# ---- correlate core HER2 features with admixture (optional) -------------------
+# ---- correlate core HER2 features with admixture -------------------
 if (!file.exists(core_file)) {
   message("Core feature file not found: ", core_file,
           " — skipping correlations.")
