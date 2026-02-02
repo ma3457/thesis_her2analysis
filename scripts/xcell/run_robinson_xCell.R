@@ -152,7 +152,7 @@ if (all(c("ImmuneScore","StromaScore") %in% colnames(admix_dt))) {
          p_scatter, width = 5.5, height = 4.5)
 }
 
-# ---- correlate core HER2 features with admixture (optional) ------
+# ---- correlate core HER2 features with admixture ------
 if (!file.exists(core_file)) {
   message("Core feature file not found: ", core_file,
           " — skipping correlations.")
