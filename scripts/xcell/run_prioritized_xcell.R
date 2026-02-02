@@ -1,4 +1,4 @@
-# ================= run_prioritized_xCell_admixture.R (FINAL + SUMMARY) =================
+# ================= run_prioritized_xCell_admixture.R  =================
 # Phase 4: quantify admixture effects on PRIORITIZED HER2 feature sets (P76, P25)
 # Cohorts: Wolf, Robinson, Brueffer
 # Outputs: correlation tables (ALL, FDR-only, FDR+|rho|), directional summaries, slide-ready barplots,
@@ -338,7 +338,7 @@ for (nm in names(COHORTS)) {
 all_dt <- rbindlist(all_cor, fill = TRUE)
 fwrite(all_dt, file.path(OUT_DIR, "ALLCOHORTS_P76P25_xCell_correlations_ALL.tsv"), sep = "\t")
 
-# ===================== ADDED: CROSS-COHORT SUMMARY PLOT =====================
+# ===================== CROSS-COHORT SUMMARY PLOT =====================
 
 # Defensive checks
 all_dt <- all_dt[!is.na(cohort) & !is.na(set) & !is.na(gene) & !is.na(score_type)]
