@@ -1,4 +1,4 @@
-# ================= run_Debets_HER2_HARP_validation.R — FINAL (updated path) =================
+# ================= run_Debets_HER2_HARP_validation.R — FINAL =================
 suppressPackageStartupMessages({
   library(data.table)
   library(stringr)
@@ -22,7 +22,7 @@ message("Debets folder: ", base_debets)
 message("Root folder  : ", base_root)
 
 # -------------------------
-# 2. PRIORITIZED FEATURE FILE — YOUR EXACT PATH
+# 2. PRIORITIZED FEATURE FILE — 
 # -------------------------
 prior_fp <- "/Users/maya.anand/Desktop/Thesis/AIM 2 HER2 DATA/wolf et al/aim2_outputs/Wolf_HARP_RNA/Wolf_core_HER2_activation_features_RNA_directional.csv"
 
@@ -31,7 +31,7 @@ if (!file.exists(prior_fp)) {
 }
 
 # -------------------------
-# 3. Debets DE output (you already generated this)
+# 3. Debets DE output 
 # -------------------------
 debets_de_fp <- file.path(
   base_debets, "aim2_outputs", "Debets2023_protein", "DE_full.tsv"
