@@ -1,4 +1,4 @@
-# Aim2UpSet_Combined_roots.R — Combined UpSet (Transcript + Proteome/RPPA, HER2+ vs HER2−)
+# Aim2UpSet_Combined_roots.R — Combined UpSet
 
 suppressPackageStartupMessages({
   options(repos = c(CRAN = "https://cloud.r-project.org"))
@@ -16,7 +16,7 @@ out_root <- file.path(base_dir, "aim2_upset_outputs")
 out_dir  <- file.path(out_root, "combined_upset")
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 
-# -------------------------- ROOTS (YOUR PATHS) -------------------------------
+# -------------------------- ROOTS -------------------------------
 
 # Transcript HER2+ vs HER2−
 tx_roots <- c(
