@@ -240,7 +240,7 @@ run_analysis(P25, "P25", mert, "Mert")
 
 cat("\nDONE\n")
 # =====================================================================
-# ---- PLOTTING FROM SAVED TABLES (APPENDED SECTION) ----
+# ---- PLOTTING FROM SAVED TABLES  ----
 
 suppressPackageStartupMessages({
   library(readr)
