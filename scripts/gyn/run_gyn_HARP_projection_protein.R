@@ -1,6 +1,5 @@
 # ============================================================
-# FINAL: HArP candidate projection into GYN proteomes
-# Maya Anand
+# HARP candidate projection into GYN proteomes
 # ============================================================
 
 suppressPackageStartupMessages({
@@ -12,7 +11,7 @@ suppressPackageStartupMessages({
 })
 
 # ------------------------------------------------------------
-# 1) FILE PATHS
+# FILE PATHS
 # ------------------------------------------------------------
 candidate_file <- "/Users/maya.anand/Desktop/Thesis/AIM 2 HER2 DATA/wolf et al/aim2_outputs/Wolf_HARP_RNA/P76_HARP_core_cotrending_candidates.csv"
 
@@ -23,7 +22,7 @@ outdir <- "/Users/maya.anand/Desktop/Thesis/GYN DATA/HARP_projection_outputs"
 dir.create(outdir, recursive = TRUE, showWarnings = FALSE)
 
 # ------------------------------------------------------------
-# 2) HELPERS
+# HELPERS
 # ------------------------------------------------------------
 clean_gene <- function(x) {
   x <- as.character(x)
@@ -209,7 +208,7 @@ make_cross_context_scatter <- function(res_df, cohort_name, outfile) {
 }
 
 # ------------------------------------------------------------
-# 3) LOAD INPUTS
+# LOAD INPUTS
 # ------------------------------------------------------------
 candidates_df <- read_csv(candidate_file, show_col_types = FALSE)
 
@@ -232,7 +231,7 @@ print(c(
 ))
 
 # ------------------------------------------------------------
-# 4) RUN ANALYSIS
+# RUN ANALYSIS
 # ------------------------------------------------------------
 ovarian_out <- correlate_candidates_with_erbb2(
   mat = ovarian_mat,
@@ -251,7 +250,7 @@ combined_results <- bind_rows(ovarian_out$results, ucec_out$results)
 combined_missing <- bind_rows(ovarian_out$missing, ucec_out$missing)
 
 # ------------------------------------------------------------
-# 5) SAVE TABLES
+# SAVE TABLES
 # ------------------------------------------------------------
 write_csv(ovarian_out$results, file.path(outdir, "ovarian_HArP_candidate_vs_ERBB2_results.csv"))
 write_csv(ucec_out$results, file.path(outdir, "ucec_HArP_candidate_vs_ERBB2_results.csv"))
@@ -264,7 +263,7 @@ write_csv(combined_summary, file.path(outdir, "combined_HArP_candidate_summary.c
 write_csv(combined_missing, file.path(outdir, "missing_HArP_candidates_by_cohort.csv"))
 
 # ------------------------------------------------------------
-# 6) SAVE PLOTS
+# SAVE PLOTS
 # ------------------------------------------------------------
 make_barplot(
   ovarian_out$results,
@@ -291,7 +290,7 @@ make_cross_context_scatter(
 )
 
 # ------------------------------------------------------------
-# 7) PRINT QUICK OUTPUT
+# PRINT QUICK OUTPUT
 # ------------------------------------------------------------
 cat("\n================ SUMMARY ================\n")
 print(combined_summary)
