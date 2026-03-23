@@ -1,11 +1,5 @@
 # ================= run_robinson_harps_scoring.R =================
 # Score Robinson (GSE199633) using a Wolf-derived HARPS signature (TOP N genes by FDR among logFC>0).
-# Output (in aim2_outputs/GSE199633_Robinson2025/):
-#   - Robinson_HARPS_scores_meanZ.tsv
-#   - Robinson_HARPS_meanZ_boxplot_by_HER2.png
-#   - Robinson_HARPS_meanZ_hist_HER2neg.png
-#   - Robinson_joint_scores_P76P25_HARPS.tsv (if Robinson_P76P25_scores_meanZ.tsv exists)
-#   - Robinson_joint_P76_vs_HARPS.png        (if Robinson_P76P25_scores_meanZ.tsv exists)
 
 suppressPackageStartupMessages({
   library(data.table)
@@ -28,7 +22,7 @@ stopifnot(dir.exists(base_dir), dir.exists(res_dir))
 stopifnot(file.exists(expr_file), file.exists(meta_file))
 stopifnot(file.exists(harps_de_file))
 
-# Optional: merge with Robinson P76/P25 scores if present
+# merge with Robinson P76/P25 scores if present
 p76p25_file <- file.path(res_dir, "Robinson_P76P25_scores_meanZ.tsv")
 has_p76p25  <- file.exists(p76p25_file)
 
@@ -172,7 +166,7 @@ p2 <- ggplot(out_neg, aes(x = HARPS_meanZ)) +
 ggsave(file.path(res_dir, "Robinson_HARPS_meanZ_hist_HER2neg.png"),
        p2, width = 10, height = 6, dpi = 200)
 
-# ---------------- OPTIONAL: MERGE WITH P76/P25 ----------------
+# ---------------- MERGE WITH P76/P25 ----------------
 if (has_p76p25) {
   p76p25 <- fread(p76p25_file, check.names = FALSE)
   p76p25$SampleID <- as.character(p76p25$SampleID)
