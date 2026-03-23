@@ -1,5 +1,5 @@
 # make_gyn_HER2_panel.R
-# Final 4-panel figure for gyn HER2 projection results
+# 4-panel figure for gyn HER2 projection results
 
 library(tidyverse)
 library(patchwork)
