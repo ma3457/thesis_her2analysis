@@ -5,12 +5,6 @@
 #   - Expression: GSE81538_gene_expression_405_transformed.csv
 #   - Meta USED: aim2_outputs/GSE81538/GSE81538_RNA_meta_USED.tsv
 #   - Wolf HARPS DE: wolf et al/aim2_outputs/Wolf_HARP_RNA/LIMMA_FDR0.05.csv
-#
-# Outputs (in aim2_outputs/GSE81538/):
-#   - Brueffer_HARPS_scores_meanZ.tsv
-#   - Brueffer_HARPS_meanZ_boxplot_by_HER2.png
-#   - Brueffer_HARPS_meanZ_hist_HER2neg.png
-#   - Brueffer_RUNLOG_HARPS.txt
 
 suppressPackageStartupMessages({
   library(data.table)
