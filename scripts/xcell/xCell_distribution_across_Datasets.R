@@ -1,5 +1,5 @@
 # =========================
-# xCell_distribution_across_Datasets.R  — FINAL FIXED
+# xCell_distribution_across_Datasets.R  
 # =========================
 suppressPackageStartupMessages({
   library(data.table)
@@ -44,7 +44,7 @@ for (nm in names(files)) {
     stop("No epithelial column found in ", nm)
   }
   
-  # reshape to long format (use data.table + then coerce just in case)
+  # reshape to long format (use data.table + then coerce)
   long <- melt(
     dt,
     id.vars      = "HER2",
