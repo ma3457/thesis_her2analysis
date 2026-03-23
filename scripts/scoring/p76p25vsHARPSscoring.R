@@ -15,12 +15,7 @@ stopifnot(file.exists(p76p25_fp), file.exists(harps_fp))
 p76p25 <- fread(p76p25_fp)
 harps  <- fread(harps_fp)
 
-# Make join key consistent (this fixes your double vs character join error)
-# Adjust the column names below if yours differ.
-# P76/P25 file: usually has sample_id + P76_meanZ + P25_meanZ (or similar)
-# HARPS file:   usually has sample_id + HARPS_score (or similar)
-
-# If sample_id column name differs, rename it here:
+# Make join key consistent 
 if (!"sample_id" %in% names(p76p25)) {
   # common alternatives
   alt <- intersect(names(p76p25), c("Patient Identifier","patient_id","id","sample","Sample","SampleID"))
@@ -92,7 +87,7 @@ make_scatter("P25_score", "HARPS_score",
              sprintf("Wolf: P25 vs HARPS-score (rho=%.3f)", rho_p25),
              file.path(out_dir, "Wolf_P25_vs_HARPS_scatter.png"))
 
-# Optional: one combined panel-style plot (P76 on x, P25 on y colored by HARPS)
+#one combined panel-style plot (P76 on x, P25 on y colored by HARPS)
 p_combo <- ggplot(dt, aes(x = P76_score, y = P25_score, color = HARPS_score)) +
   geom_point(size = 2.2, alpha = 0.9) +
   theme_classic(base_size = 16) +
