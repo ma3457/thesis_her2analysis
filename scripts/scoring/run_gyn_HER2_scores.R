@@ -31,7 +31,6 @@ p25_raw <- read_csv(p25_file, show_col_types = FALSE)
 
 # --------------------------------------------------
 # grab gene sets
-# your files use gene_symbol, not Gene
 # --------------------------------------------------
 cat("\nColumns in P76 file:\n")
 print(colnames(p76_raw))
@@ -63,10 +62,6 @@ cat("\nP76 genes loaded:", length(P76), "\n")
 cat("P25 genes loaded:", length(P25), "\n")
 
 # --------------------------------------------------
-# keep only the columns we actually need
-# ovarian uses TCGA sample names
-# ucec has tumor and normal, so keeping tumor only
-# --------------------------------------------------
 ovarian_clean <- ovarian %>%
   select(Gene, starts_with("TCGA"))
 
@@ -75,7 +70,6 @@ ucec_clean <- ucec %>%
 
 # --------------------------------------------------
 # clean up gene column
-# just making sure names are trimmed and not empty
 # --------------------------------------------------
 ovarian_clean <- ovarian_clean %>%
   mutate(Gene = str_trim(Gene))
@@ -85,8 +79,6 @@ ucec_clean <- ucec_clean %>%
 
 # --------------------------------------------------
 # collapse duplicate genes
-# proteomics files can have repeated gene symbols
-# averaging them so we end up with one row per gene
 # --------------------------------------------------
 ovarian_clean <- ovarian_clean %>%
   filter(!is.na(Gene), Gene != "") %>%
@@ -111,7 +103,6 @@ cat("UCEC:", nrow(ucec_clean), "genes x", ncol(ucec_clean) - 1, "tumor samples\n
 
 # --------------------------------------------------
 # check how many signature genes are detectable
-# this matters because proteome coverage is always lower than RNA
 # --------------------------------------------------
 cat("\nGene set overlap counts...\n")
 cat("P76 in ovarian:", sum(P76 %in% ovarian_clean$Gene), "\n")
@@ -146,7 +137,6 @@ compute_signature_score <- function(df) {
   mat_z <- t(scale(t(mat)))
   
   # if a gene has zero variance, scale gives NA
-  # setting those to 0 keeps them from breaking the score
   mat_z[is.na(mat_z)] <- 0
   
   # average z-scored signal across genes for each sample
@@ -186,7 +176,6 @@ ucec_ERBB2 <- get_erbb2(ucec_clean)
 
 # --------------------------------------------------
 # build output data frames
-# using sample names to line things up correctly
 # --------------------------------------------------
 ovarian_plot_df <- tibble(
   Sample = names(ovarian_P76_scores),
@@ -209,8 +198,7 @@ write_csv(ovarian_plot_df, "ovarian_HER2_scores.csv")
 write_csv(ucec_plot_df, "ucec_HER2_scores.csv")
 
 # --------------------------------------------------
-# save detected genes too
-# useful for methods/results wording later
+# save detected genes 
 # --------------------------------------------------
 write_csv(tibble(Gene = ovarian_P76$Gene), "ovarian_detected_P76_genes.csv")
 write_csv(tibble(Gene = ovarian_P25$Gene), "ovarian_detected_P25_genes.csv")
@@ -284,7 +272,6 @@ ggsave("ucec_P25_vs_ERBB2.png", p4, width = 7, height = 5, dpi = 300)
 
 # --------------------------------------------------
 # top scoring tumors
-# these are probably the ones worth checking first
 # --------------------------------------------------
 ovarian_top <- ovarian_plot_df %>%
   arrange(desc(P76_score)) %>%
