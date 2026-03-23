@@ -9,7 +9,7 @@ suppressPackageStartupMessages({
 # ============================================================
 
 # -----------------------------
-# User paths: update these if needed
+# User paths
 # -----------------------------
 files <- list(
   RajKumar = "/Users/maya.anand/Desktop/Thesis/AIM 2 HER2 DATA/raj kumar et al/aim2_outputs/RajKumar_PROT_for_ProteoMixture_ProteoMixture_ssGSEA_results.csv",
