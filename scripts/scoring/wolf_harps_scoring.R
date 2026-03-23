@@ -1,8 +1,6 @@
 # ============================ wolf_harps_scoring.R ============================
 # Wolf (I-SPY2 / GSE194040): make HArPS labels from RPS-5, run RNA DE
 # (HARP+ vs HARP- within HER2-), then build a sample-level "HARPS-score".
-#
-# Outputs -> <script_dir>/aim2_outputs/Wolf_HARPS_score_RNA/
 # ==============================================================================
 
 suppressPackageStartupMessages({
@@ -131,14 +129,14 @@ read_expr_wide <- function(path, feature_name = "gene_symbol") {
   rownames(E) <- rn[seq_len(n)]
   storage.mode(E) <- "numeric"
   
-  # IMPORTANT: keep numeric-looking patient IDs as strings
+  # keep numeric-looking patient IDs as strings
   colnames(E) <- as.character(colnames(E))
   
   E
 }
 
 run_limma_two_group <- function(expr, meta_dt, group_col, pos_label = "HARP+", neg_label = "HARP-") {
-  # ensure character IDs everywhere (prevents bmerge join-type issues later too)
+  # ensure character IDs everywhere 
   meta_dt[, sample_id := as.character(sample_id)]
   colnames(expr) <- as.character(colnames(expr))
   
