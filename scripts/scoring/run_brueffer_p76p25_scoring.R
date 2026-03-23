@@ -6,13 +6,7 @@
 #   - Meta USED: aim2_outputs/GSE81538/GSE81538_RNA_meta_USED.tsv
 #   - P76 list CSV: aim2_prioritized/HER2_UP_overlap_76_with_stats_Wolf_Robinson_Brueffer.csv
 #   - P25 list CSV: aim2_prioritized/HER2_UP_overlap_25_FDR0.05_LFC1_ALL3_with_stats_Wolf_Robinson_Brueffer.csv
-#
-# Outputs (in aim2_outputs/GSE81538/):
-#   - Brueffer_P76P25_scores_meanZ.tsv
-#   - Brueffer_P76_meanZ_boxplot.png
-#   - Brueffer_P25_meanZ_boxplot.png
-#   - Brueffer_P76_vs_ERBB2_scatter.png (if ERBB2 exists)
-#   - Brueffer_RUNLOG_P76P25.txt
+
 
 suppressPackageStartupMessages({
   library(data.table)
@@ -146,7 +140,7 @@ g2 <- p_box(out, "P25_meanZ",
             paste0("Matched: ", length(p25_matched), "/", length(P25)))
 ggsave(file.path(out_dir, "Brueffer_P25_meanZ_boxplot.png"), g2, width = 10, height = 7, dpi = 220)
 
-# Optional: correlate P76 with ERBB2 expression
+# correlate P76 with ERBB2 expression
 if ("ERBB2" %in% rownames(E)) {
   erbb2 <- as.numeric(E["ERBB2", out$SampleID])
   rho <- suppressWarnings(cor(out$P76_meanZ, erbb2, method = "spearman", use = "complete.obs"))
