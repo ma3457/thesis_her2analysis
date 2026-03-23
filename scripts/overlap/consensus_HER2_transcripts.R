@@ -1,4 +1,4 @@
-# consensus_HER2_transcripts.R — FINAL (robust fread + spaces-safe)
+# consensus_HER2_transcripts.R
 
 suppressPackageStartupMessages({
   library(data.table)
@@ -8,15 +8,10 @@ suppressPackageStartupMessages({
 })
 
 # ----------------------------
-# CONFIG: where your .txt lists live
-# ----------------------------
 base_dir <- normalizePath(
   "~/Desktop/Thesis/AIM 2 HER2 DATA/aim2_upset_outputs/transcript_upset_dual/FDR_FC",
   mustWork = FALSE
 )
-
-# If you actually saved them somewhere else, set base_dir to that folder.
-# You can confirm by: list.files(base_dir)
 
 files <- list(
   Wolf_UP       = file.path(base_dir, "GSE81538_UP_FDR0.05_LFC1.txt"),
@@ -51,14 +46,14 @@ clean_gene <- function(x) {
 read_gene_list <- function(path, cohort, direction) {
   path <- normalizePath(path, mustWork = TRUE)
   
-  # IMPORTANT: use file= explicitly so spaces don't trigger "system command" behavior
+  # use file= explicitly so spaces don't trigger "system command" behavior
   dt <- data.table::fread(file = path, header = FALSE, sep = "\t", fill = TRUE, data.table = TRUE)
   
   if (ncol(dt) == 0 || nrow(dt) == 0) {
     stop("Gene list read as empty: ", path)
   }
   
-  # If a header slipped in, dt[1,1] might be "gene" etc — we’ll just clean and drop non-genes later
+  # If a header slipped in, dt[1,1] might be "gene" etc we will clean and drop non-genes later
   genes <- clean_gene(dt[[1]])
   
   data.frame(
